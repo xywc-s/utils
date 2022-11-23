@@ -1,0 +1,28 @@
+{
+  "name": "@xywc-s/utils",
+  "version": "1.0.1",
+  "author": {
+    "name": "xywc-s",
+    "email": "xywc_s@foxmail.com",
+    "url": "https://github.com/xywc-s"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.3",
+    "vite": "^3.1.0"
+  },
+  "license": "MIT"
+}

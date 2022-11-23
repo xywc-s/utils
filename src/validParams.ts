@@ -1,0 +1,22 @@
+import { isEmpty, isNaN, isNil, isObject, isPlainObject, isString, omitBy } from 'lodash-es'
+
+/**
+ * 重构出有效的查询参数,
+ * 排除参数对象上值为null,NaN,{},""的属性
+ * @param params 需要处理的对象
+ * @param fn 接收重构后的值作为参数, 进行自定义函数二次处理
+ */
+export function validParams(
+  params: Record<string, any>,
+  fn?: (params: Record<string, any>) => Record<string, any>
+) {
+  if (!isPlainObject(params)) return params
+  const result = omitBy(params, (value) => {
+    if (isNil(value)) return true
+    if (isNaN(value)) return true
+    if (isObject(value) && isEmpty(value)) return true
+    if (isString(value) && !value) return true
+    return false
+  })
+  return fn ? fn(result) : result
+}
