@@ -9,6 +9,8 @@ function validParams(params, fn) {
       return true;
     if (isObject(value) && isEmpty(value))
       return true;
+    if (isArray(value) && !value.length)
+      return true;
     if (isString(value) && !value)
       return true;
     return false;
