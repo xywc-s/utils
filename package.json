@@ -15,7 +15,10 @@
     "es"
   ],
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "publish major": "npm version major && git push",
+    "publish minor": "npm version minor && git push",
+    "publish patch": "npm version patch && git push"
   },
   "dependencies": {
     "lodash-es": "^4.17.0"
