@@ -22,22 +22,13 @@ export function downloadFileByUrl(url: string, fileName: string) {
 // eslint-disable-next-line no-undef
 export function downloadFileByBlob(data: BlobPart, fileName: string) {
   const blob = new Blob([data])
-  if (window.navigator.msSaveBlob) {
-    try {
-      window.navigator.msSaveBlob(blob, fileName)
-    } catch (e) {
-      console.error(e)
-    }
-  } else {
-    //  其他浏览器
-    const url = window.URL.createObjectURL(blob)
-    download(url, fileName)
-    window.URL.revokeObjectURL(url)
-  }
+  const url = window.URL.createObjectURL(blob)
+  download(url, fileName)
+  window.URL.revokeObjectURL(url)
 }
 
 /**
- * 通过url下载文件
+ * 下载文件
  * @param url 文件url地址
  * @param fileName 完整文件名, 如: a.pdf
  */
@@ -55,8 +46,8 @@ export function download(url: string, fileName: string) {
  * 从请求响应解析文件名和扩展名
  * @param response 请求响应
  */
-export function parseFileName(response) {
-  const str = response.headers['content-disposition']
+export function parseFileName(response: Response) {
+  const str: string = response.headers['content-disposition']
   if (!response || !str)
     throw new Error('文件名称解析错误, 响应数据有误或者响应头不存在"content-disposition"属性')
   let suffix = ''

@@ -1,3 +1,4 @@
+// @ts-ignore
 /**
  * 格式化金额
  * @param number 金额数

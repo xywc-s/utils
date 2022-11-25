@@ -1,4 +1,4 @@
-type TypeValue =
+export type TypeValue =
   | 'string'
   | 'number'
   | 'object'
