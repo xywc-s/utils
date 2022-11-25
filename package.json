@@ -1,6 +1,6 @@
 {
   "name": "@xywc-s/utils",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "author": {
     "name": "xywc-s",
     "email": "xywc_s@foxmail.com",
@@ -9,7 +9,6 @@
   "type": "module",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "es/index.d.ts",
   "files": [
     "lib",
     "es"
