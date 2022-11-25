@@ -1,4 +1,13 @@
-import { isEmpty, isNaN, isNil, isObject, isPlainObject, isString, omitBy } from 'lodash-es'
+import {
+  isArray,
+  isEmpty,
+  isNaN,
+  isNil,
+  isObject,
+  isPlainObject,
+  isString,
+  omitBy
+} from 'lodash-es'
 
 /**
  * 重构出有效的查询参数,
@@ -6,12 +15,19 @@ import { isEmpty, isNaN, isNil, isObject, isPlainObject, isString, omitBy } from
  * @param params 需要处理的对象
  * @param fn 接收重构后的值作为参数, 进行自定义函数二次处理
  */
-export function validParams(
-  params: Record<string, any>,
-  fn?: (params: Record<string, any>) => Record<string, any>
-) {
+export declare function validParams<T extends object>(params: T): Partial<T>
+// eslint-disable-next-line no-redeclare
+export declare function validParams<R, T extends object>(
+  params: T,
+  fn: (params: Partial<T>) => R
+): R
+// eslint-disable-next-line no-redeclare
+export function validParams<R, T extends object>(
+  params: T,
+  fn?: (params: Partial<T>) => R
+): Partial<T> | R {
   if (!isPlainObject(params)) return params
-  const result = omitBy(params, (value) => {
+  const result = omitBy<T>(params, (value) => {
     if (isNil(value)) return true
     if (isNaN(value)) return true
     if (isObject(value) && isEmpty(value)) return true
