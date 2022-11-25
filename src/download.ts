@@ -3,14 +3,19 @@
  * @param url 文件url地址
  * @param fileName 完整文件名, 如: a.pdf
  */
-export function downloadFileByUrl(url: string, fileName: string) {
-  console.log({ url, name: fileName })
+export function downloadFileByUrl(url: string, fileName?: string) {
   fetch(url, {
     headers: {
       responseType: 'blob'
     }
   })
-    .then((res) => res.blob())
+    .then((res) => {
+      if (!fileName) {
+        const file = parseFileName(res)
+        fileName = `${file.fileName}${file.suffix}`
+      }
+      return res.blob()
+    })
     .then((blob) => downloadFileByBlob(blob, fileName))
 }
 
@@ -47,7 +52,7 @@ export function download(url: string, fileName: string) {
  * @param response 请求响应
  */
 export function parseFileName(response: Response) {
-  const str: string = response.headers['content-disposition']
+  const str = response.headers.get('content-disposition')
   if (!response || !str)
     throw new Error('文件名称解析错误, 响应数据有误或者响应头不存在"content-disposition"属性')
   let suffix = ''
