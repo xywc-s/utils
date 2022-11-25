@@ -16,7 +16,7 @@ export function downloadFileByUrl(url: string, fileName?: string) {
       }
       return res.blob()
     })
-    .then((blob) => downloadFileByBlob(blob, fileName))
+    .then((blob) => downloadFileByBlob(blob, fileName as string))
 }
 
 /**
