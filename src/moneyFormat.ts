@@ -1,4 +1,3 @@
-// @ts-ignore
 /**
  * 格式化金额
  * @param number 金额数
@@ -11,7 +10,7 @@
  */
 export const moneyFormat = (
   number: string | number,
-  decimals?: string | number,
+  decimals?: number = 2,
   decPoint?: string,
   thousandsSep?: string
 ) => {
@@ -21,7 +20,7 @@ export const moneyFormat = (
   const sep = typeof thousandsSep === 'undefined' ? ',' : thousandsSep
   const dec = typeof decPoint === 'undefined' ? '.' : decPoint
   let s = []
-  const toFixedFix = function (n, prec) {
+  const toFixedFix = function (n: number, prec: number) {
     const k = Math.pow(10, prec)
     return '' + Math.ceil(n * k) / k
   }
