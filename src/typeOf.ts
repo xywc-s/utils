@@ -1,11 +1,11 @@
 export type TypeValue =
+  | 'symbol'
   | 'string'
   | 'number'
   | 'object'
   | 'array'
   | 'boolean'
   | 'function'
-  | 'symbol'
   | 'null'
   | 'undefined'
 

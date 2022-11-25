@@ -10,7 +10,7 @@
  */
 export const moneyFormat = (
   number: string | number,
-  decimals?: number = 2,
+  decimals: number = 2,
   decPoint?: string,
   thousandsSep?: string
 ) => {
